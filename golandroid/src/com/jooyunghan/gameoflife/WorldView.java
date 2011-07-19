@@ -76,7 +76,6 @@ public class WorldView extends SurfaceView implements SurfaceHolder.Callback {
 	}
 
 	public void setSurfaceSize(int width, int height) {
-
 		this.width = width;
 		this.height = height;
 		World newWorld = new World(width/UNIT, height/UNIT);
@@ -85,8 +84,6 @@ public class WorldView extends SurfaceView implements SurfaceHolder.Callback {
 			for (int y=0; y<world.height(); y++)
 				newWorld.set(x, y, world.get(x,y));
 		world = newWorld;
-		// for now
-		world.shake();
 	}
 
 	public WorldView(Context context, AttributeSet attrs) {
@@ -115,5 +112,11 @@ public class WorldView extends SurfaceView implements SurfaceHolder.Callback {
 		mHandler.removeCallbacks(mDraw);
 	}
 
+	public void setWorld(World world) {
+		this.world = world;
+	}
 
+	public World getWorld() {
+		return this.world;
+	}
 }

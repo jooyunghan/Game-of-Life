@@ -53,6 +53,14 @@ public class GameOfLifeTest extends TestCase {
 		assertEquals(next, w.next().toString());
 	}
 	
-	
+	public void testRestore() throws Exception {
+		World w = new World();
+		w.shake();
+		
+		World w2 = new World();
+		w2.setCells(w.toString());
+		
+		assertEquals(w.toString(), w2.toString());
+	}
 
 }

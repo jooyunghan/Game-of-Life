@@ -71,11 +71,10 @@ public class World {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		for (int x = 0; x < width; x++) {
-			for (int y = 0; y < height; y++) {
+		for (int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++) {
 				sb.append(get(x, y) == Cell.ALIVE ? "*" : " ");
 			}
-			sb.append("\n");
 		}
 		return sb.toString();
 	}
@@ -100,20 +99,11 @@ public class World {
 		 }
 	}
 
-	// public static void main(String... args) {
-	// World w = new World();
-	//
-	// Random r = new Random();
-	// for (int i=0; i<40; i++) {
-	// int x = r.nextInt(w.size());
-	// int y = r.nextInt(w.size());
-	// w.set(x, y, Cell.ALIVE);
-	// }
-	//
-	// while (true) {
-	// System.out.println(w);
-	// System.out.println("----");
-	// w = w.next();
-	// }
-	// }
+	public void setCells(String cells) {
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				set(x, y, (cells.charAt(y*width+x) == '*') ? Cell.ALIVE : Cell.DEAD);
+			}
+		}
+	}
 }
