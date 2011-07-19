@@ -2,4 +2,5 @@
 <resources>
     <string name="hello">Hello World, WorldActivity!</string>
     <string name="app_name">Game of Life</string>
+    <string name="shake">Shake</string>
 </resources>

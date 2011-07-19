@@ -3,6 +3,9 @@ package com.jooyunghan.gameoflife;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 public class WorldActivity extends Activity {
 
@@ -44,5 +47,23 @@ public class WorldActivity extends Activity {
     	} else {
     		worldView.setWorld(new World());
     	}
+    }
+    
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+    	MenuInflater inf = getMenuInflater();
+    	inf.inflate(R.menu.mainmenu, menu);
+    	return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+        case R.id.itemShake:
+        	worldView.world.shake();
+            return true;
+        default:
+            return super.onOptionsItemSelected(item);
+        }
     }
 }
