@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
@@ -22,6 +23,7 @@ public class WorldView extends SurfaceView implements SurfaceHolder.Callback {
 	public Paint mFillPaint = new Paint();
 	{
 		mLinePaint.setColor(Color.BLACK);
+		mLinePaint.setAntiAlias(true);
 		mFillPaint.setColor(Color.WHITE);
 	}
 	
@@ -65,14 +67,17 @@ public class WorldView extends SurfaceView implements SurfaceHolder.Callback {
 	}
 	
 	private void doDraw(Canvas c) {
-		Rect surface = new Rect();
-		surface.set(0, 0, width, height);
-		c.drawRect(surface, mFillPaint);
+		Rect rect = new Rect();
+		rect.set(0, 0, width, height);
+		c.drawRect(rect, mFillPaint);
 		
+		RectF rect2 = new RectF();
 		for (int x=0; x<world.width(); x++)
 			for (int y=0; y<world.height(); y++)
-				if (world.get(x, y) == Cell.ALIVE)
-					c.drawRect(x*UNIT, y*UNIT, (x+1)*UNIT, (y+1)*UNIT, mLinePaint);
+				if (world.get(x, y) == Cell.ALIVE) {
+					rect2.set(x*UNIT, y*UNIT, (x+1)*UNIT, (y+1)*UNIT); 
+					c.drawOval(rect2, mLinePaint);
+				}
 	}
 
 	public void setSurfaceSize(int width, int height) {
