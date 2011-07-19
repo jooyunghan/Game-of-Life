@@ -124,4 +124,12 @@ public class WorldView extends SurfaceView implements SurfaceHolder.Callback {
 	public World getWorld() {
 		return this.world;
 	}
+	
+	@Override
+	public void onWindowFocusChanged(boolean hasWindowFocus) {
+		if (!hasWindowFocus)
+			mHandler.removeCallbacks(mDraw);
+		else
+			mHandler.post(mDraw);
+	}
 }
