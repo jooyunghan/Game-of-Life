@@ -16,6 +16,7 @@ public class WorldView extends SurfaceView implements SurfaceHolder.Callback {
 	public static final String TAG = "WorldView";
 	public static final int UNIT = 20;
 	public static final int STEP = 200;
+	public static boolean run = true; // for test purpose 
 	
 	public World world = new World();
 	
@@ -41,7 +42,8 @@ public class WorldView extends SurfaceView implements SurfaceHolder.Callback {
 			try {
 				c = holder.lockCanvas(null);
 				synchronized (holder) {
-					updatePhysics();
+					if (run)
+						updatePhysics();
 					doDraw(c);
 				}
 
@@ -54,10 +56,11 @@ public class WorldView extends SurfaceView implements SurfaceHolder.Callback {
 				}
 			}
 			
-			long elapsed = System.currentTimeMillis() - start;
-			
 			mHandler.removeCallbacks(mDraw);
-			mHandler.postDelayed(mDraw, STEP - elapsed);
+			if (run) {
+				long elapsed = System.currentTimeMillis() - start;
+				mHandler.postDelayed(mDraw, STEP - elapsed);
+			}
 		}
 	};
 
