@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Game of Life" default="jar">
+ <target name="create">
+  <mkdir dir="bin" />
+ </target>
+ <target name="compile" depends="create">
+   <javac destdir="bin">
+     <src path="src" />
+     <src path="tests" />
+     <classpath refid="junit" />
+   </javac>
+ </target>
+ <target name="jar" depends="compile">
+  <jar destfile="jar/gol.jar">
+   <fileset dir="bin" />
+  </jar> 
+ </target>
+ <target name="clean">
+  <delete dir="bin" />
+  <delete dir="jar" />
+ </target>
+ <path id="junit">
+    <pathelement location="lib/junit-4.8.2.jar" />
+ </path>
+</project>
