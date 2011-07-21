@@ -3,4 +3,7 @@
 bin
 gen
 coverage
+*.swp
+local.properties
+
 
