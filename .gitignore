@@ -3,3 +3,8 @@
 bin
 gen
 .DS_Store
+coverage
+*.swp
+local.properties
+coverage.*
+instrumented

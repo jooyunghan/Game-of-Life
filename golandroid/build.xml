@@ -39,12 +39,14 @@
 
 <!-- extension targets. Uncomment the ones where you want to do custom work
      in between standard targets -->
-<!--
     <target name="-pre-build">
     </target>
     <target name="-pre-compile">
+     <subant target="jar">
+      <fileset dir="../gol" includes="build.xml" />
+     </subant>
     </target>
-
+<!--
     [This is typically used for code obfuscation.
      Compiled code location: ${out.classes.absolute.dir}
      If this is not done in place, override ${out.dex.input.absolute.dir}]
@@ -74,11 +76,6 @@
                below to <setup import="false" />.
              - customize to your needs.
     -->
-    <target name="-pre-compile">
-       <subant target="jar">
-            <fileset dir="../gol" includes="build.xml" />
-       </subant>
-    </target> 
     <setup />
 
 </project>
