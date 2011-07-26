@@ -6,10 +6,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 
-public class WorldActivity extends Activity {
+public class WorldActivity extends Activity implements OnClickListener {
 
 	private WorldView worldView;
+	private Button startButton;
+	private Button shakeButton;
+	private Button stopButton;
+	private Button stepButton;
 
 	/** Called when the activity is first created. */
     @Override
@@ -17,6 +24,15 @@ public class WorldActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         worldView = (WorldView) findViewById(R.id.world);
+        
+        startButton = (Button) findViewById(R.id.start);
+        startButton.setOnClickListener(this);
+        shakeButton = (Button) findViewById(R.id.shake);
+        shakeButton.setOnClickListener(this);
+        stopButton = (Button) findViewById(R.id.stop);
+        stopButton.setOnClickListener(this);
+        stepButton = (Button) findViewById(R.id.step);
+        stepButton.setOnClickListener(this);
     }
     
     @Override
@@ -60,10 +76,38 @@ public class WorldActivity extends Activity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case R.id.itemShake:
-        	worldView.world.shake();
+        	onShakeWorld();
             return true;
         default:
             return super.onOptionsItemSelected(item);
         }
     }
+
+	@Override
+	public void onClick(View v) {
+		if (v == startButton) 
+			onStartWorld();
+		else if (v == shakeButton)
+			onShakeWorld();
+		else if (v == stopButton)
+			onStopWorld();
+		else if (v == stepButton)
+			onStepWorld();
+	}
+
+	private void onShakeWorld() {
+		worldView.shake();
+	}
+
+	private void onStartWorld() {
+		worldView.start();
+	}
+	
+	private void onStopWorld() {
+		worldView.stop();
+	}
+	
+	private void onStepWorld() {
+		worldView.step();
+	}
 }
