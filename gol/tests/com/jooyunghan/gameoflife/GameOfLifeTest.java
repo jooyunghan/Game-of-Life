@@ -63,4 +63,22 @@ public class GameOfLifeTest extends TestCase {
 		assertEquals(w.toString(), w2.toString());
 	}
 
+	public void testShakeRandomizeTheWorld_Make30PercentOfAliveCells() {
+		World w = new World(10, 10);
+		int count = 0;
+		for (int i=0; i<100; i++) {
+			w.shake();
+			count += countAlive(w);
+		}	
+		assertTrue( count > 2500 && count < 3500 );
+	}
+
+	private int countAlive(World w) {
+		int count = 0;
+		for (int i=0; i<w.width(); i++)
+			for (int j=0; j<w.height(); j++)
+				if (w.get(i, j) == Cell.ALIVE)
+					count++;
+		return count;
+	}
 }

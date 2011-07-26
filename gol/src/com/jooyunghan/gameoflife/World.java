@@ -30,7 +30,7 @@ public class World {
 	}
 
 	public void set(int x, int y, Cell cell) {
-		if (x<0 || y<0 || x>=width || y>=height)
+		if (x < 0 || y < 0 || x >= width || y >= height)
 			return;
 		cells[x][y] = cell;
 	}
@@ -88,21 +88,24 @@ public class World {
 	public int hashCode() {
 		return toString().hashCode();
 	}
-	
+
 	public void shake() {
-		 Random r = new Random();
-		 int number = (int) (width*height*0.3);
-		 for (int i=0; i<number; i++) {
-			 int x = r.nextInt(width);
-			 int y = r.nextInt(height);
-			 set(x, y, Cell.ALIVE);
-		 }
+		Random r = new Random();
+		for (int x = 0; x < width; x++) {
+			for (int y = 0; y < height; y++) {
+				if (r.nextDouble() < 0.3)
+					set(x, y, Cell.ALIVE);
+				else
+					set(x, y, Cell.DEAD);
+			}
+		}
 	}
 
 	public void setCells(String cells) {
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
-				set(x, y, (cells.charAt(y*width+x) == '*') ? Cell.ALIVE : Cell.DEAD);
+				set(x, y, (cells.charAt(y * width + x) == '*') ? Cell.ALIVE
+						: Cell.DEAD);
 			}
 		}
 	}
