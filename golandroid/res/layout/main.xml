@@ -12,6 +12,10 @@
 			android:layout_width="wrap_content" android:layout_height="wrap_content" />
 		<Button android:text="@string/step" android:id="@+id/step"
 			android:layout_width="wrap_content" android:layout_height="wrap_content" />
+		<Button android:text="@string/save" android:id="@+id/save"
+			android:layout_width="wrap_content" android:layout_height="wrap_content" />
+		<Button android:text="@string/load" android:id="@+id/load"
+			android:layout_width="wrap_content" android:layout_height="wrap_content" />
 	</LinearLayout>
 	<com.jooyunghan.gameoflife.WorldView
 		android:id="@+id/world" android:layout_width="match_parent"

@@ -160,4 +160,5 @@ public class WorldView extends SurfaceView implements SurfaceHolder.Callback {
 		if (!run) 
 			mHandler.post(mDraw);
 	}
+
 }

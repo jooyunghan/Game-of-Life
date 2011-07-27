@@ -6,4 +6,6 @@
     <string name="start">Start</string>
     <string name="stop">Stop</string>
     <string name="step">Step</string>
+    <string name="save">Save</string>
+    <string name="load">Load</string>
 </resources>
